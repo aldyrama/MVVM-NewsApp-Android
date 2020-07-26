@@ -6,6 +6,5 @@ interface BaseFragmentView<PV> {
     fun refresh()
     fun reload()
     fun setParentView(view : PV)
-    fun getFragment() : Fragment
     fun reattach()
 }

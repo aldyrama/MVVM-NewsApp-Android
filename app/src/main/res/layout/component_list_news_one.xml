@@ -13,8 +13,8 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="60dp"
+        android:nestedScrollingEnabled="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/news_one_item" />
 

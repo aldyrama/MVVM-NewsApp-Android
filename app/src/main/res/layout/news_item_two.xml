@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
-        android:elevation="6dp"
-        app:cardBackgroundColor="@android:color/white"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,66 +19,65 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_title_hotnews"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:maxLines="3"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:maxLines="2"
                 android:text="@string/ipsum"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/img_card"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/img_hot_news" />
+
+            <TextView
+                android:id="@+id/tv_sort_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:maxLines="3"
+                android:text="@string/ipsum"
+                android:textColor="@color/grey700"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_hotnews" />
+
+            <ImageView
+                android:id="@+id/img_hot_news"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/img_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/img_hot_news"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/shape_bg"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_wording_category"
-                android:layout_marginTop="15dp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="3dp"
+                android:background="@drawable/bg_wording_category_news"
                 android:gravity="center"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_hotnews">
+                android:layout_margin="16dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_category"
+                    android:id="@+id/tv_category_news"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/wording"
                     android:layout_gravity="center"
-                    android:textSize="12sp"
                     android:gravity="center"
-                    android:textColor="@color/white"/>
+                    android:text="@string/wording"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <TextView
@@ -88,20 +85,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="6dp"
                 android:gravity="center"
                 android:text="22 December 20"
-                android:drawablePadding="6dp"
-                android:textSize="12sp"
                 android:textColor="@color/grey700"
-                android:drawableStart="@drawable/ic_date"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sort_description" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="16dp"
                 android:drawableStart="@drawable/ic_like"
                 android:drawablePadding="6dp"
                 android:gravity="center"
@@ -109,7 +109,8 @@
                 android:textColor="@color/grey700"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sort_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
