@@ -11,6 +11,16 @@ interface ApiInterface {
     fun getTopHeadlines(
         @Query("country") country: String?,
         @Query("apiKey") apiKey: String?,
+        @Query("q") q: String?,
+        @Query("pageSize") pageSize: Int?,
+        @Query("page") page: Int?,
+        @Query("category") category: String?
+    ): Call<NewsResponse>
+
+    @GET("everything")
+    fun getTopEverything(
+        @Query("country") country: String?,
+        @Query("apiKey") apiKey: String?,
         @Query("pageSize") pageSize: Int?
     ): Call<NewsResponse>
 

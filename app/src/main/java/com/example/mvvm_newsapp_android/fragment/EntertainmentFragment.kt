@@ -5,56 +5,92 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.mvvm_newsapp_android.R
+import com.example.mvvm_newsapp_android.adapter.NewsAdapter
+import com.example.mvvm_newsapp_android.base.BaseView
+import com.example.mvvm_newsapp_android.model.ArticlesModel
+import com.example.mvvm_newsapp_android.viewmodel.NewsCategoryViewModel
+import kotlinx.android.synthetic.main.component_list_news.*
+import kotlinx.android.synthetic.main.fragment_entertainment.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class EntertainmentFragment : Fragment(), BaseView {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EntertainmentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class EntertainmentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    var isRefresh = false
+    private var list = ArrayList<ArticlesModel>()
+    private val adapter by lazy { NewsAdapter() }
+    private val viewModel by lazy { ViewModelProviders.of(this).get(NewsCategoryViewModel::class.java) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_entertainment, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EntertainmentFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EntertainmentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(): HotFragment {
+            return HotFragment()
+        }
+    }
+
+    private fun init(){
+        initViewModel()
+        fetchData()
+//        swipe_refresh_entertainment.setOnRefreshListener {
+//            refresh()
+//        }
+    }
+
+    private fun initViewModel(){
+        recyclerView_news.adapter = adapter
+        viewModel.resource.observe(viewLifecycleOwner, Observer{
+            when(it?.status) {
+                Resource.LOADING -> onLoading()
+                Resource.SUCCESS -> onSuccess()
+                Resource.ERROR -> onFailure(it.error)
             }
+        })
+
+//        lifecycle.addObserver(viewModel)
+
+        viewModel.dataList.observe(viewLifecycleOwner, Observer{
+            list = it
+            adapter.setCategoryList(it)
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    fun fetchData(){
+        list.clear();
+        viewModel.getCategoryTopHeadlines("id", pageSize = 20, category = "entertainment")
+    }
+
+    override fun refresh() {
+        isRefresh = true
+        list.clear();
+        viewModel.onRefreshCategoryTopHeadlines("id", category = "entertainment")
+    }
+
+    override fun reload() {
+    }
+
+    override fun onFailure(t: Throwable) {
+        news_entertainment_progress_load.visibility = View.GONE
+//        swipe_refresh_entertainment.isRefreshing = false
+        Toast.makeText(activity, "Failure $t", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onLoading() {
+        if (!isRefresh) news_entertainment_progress_load.visibility = View.VISIBLE
+    }
+
+    override fun onSuccess() {
+        news_entertainment_progress_load.visibility = View.GONE
+//        swipe_refresh_entertainment.isRefreshing = false
     }
 }

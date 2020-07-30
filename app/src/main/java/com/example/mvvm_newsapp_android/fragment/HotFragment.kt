@@ -35,8 +35,6 @@ class HotFragment : Fragment(), BaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-
-
     }
 
     companion object {

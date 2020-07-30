@@ -8,7 +8,7 @@
     android:layout_marginBottom="10dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_title_hotnews"
+                android:id="@+id/tv_title_category_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -33,7 +33,7 @@
                 android:text="@string/ipsum"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@+id/img_hot_news" />
+                app:layout_constraintTop_toBottomOf="@+id/img_category_news" />
 
             <TextView
                 android:id="@+id/tv_sort_description"
@@ -47,10 +47,10 @@
                 android:text="@string/ipsum"
                 android:textColor="@color/grey700"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_hotnews" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_category_news" />
 
             <ImageView
-                android:id="@+id/img_hot_news"
+                android:id="@+id/img_category_news"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
@@ -81,7 +81,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_date"
+                android:id="@+id/tv_date_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -4,7 +4,6 @@ import Resource
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvm_newsapp_android.base.BaseView
 import com.example.mvvm_newsapp_android.model.ArticlesModel
 import com.example.mvvm_newsapp_android.model.response.NewsResponse
 import com.example.mvvm_newsapp_android.service.ApiUtils
@@ -14,8 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.nio.charset.Charset
 
-class NewsViewModel : ViewModel(), LifecycleObserver {
-
+class NewsCategoryViewModel : ViewModel(), LifecycleObserver {
     val resource = MutableLiveData<Resource<Any>>()
     val dataList = MutableLiveData<ArrayList<ArticlesModel>>()
 
@@ -23,12 +21,12 @@ class NewsViewModel : ViewModel(), LifecycleObserver {
         dataList.value = ArrayList()
     }
 
-    fun onRefreshTopHeadlines(country: String?, category: String? = null){
+    fun onRefreshCategoryTopHeadlines(country: String?, q: String? = null, pageSize: Int? = 8, page: Int? = 1, category: String? = null){
         dataList.value?.clear()
-        getTopHeadlines(country = country, q = null, pageSize = 8, page = 1, category = category)
+        getCategoryTopHeadlines(country = country, q = q, pageSize = pageSize, page = page, category = category)
     }
 
-    fun getTopHeadlines(country: String?, q: String? = null, pageSize: Int? = 8, page: Int? = 1, category: String? = null){
+    fun getCategoryTopHeadlines(country: String?, q: String? = null, pageSize: Int? = 8, page: Int? = 1, category: String? = null){
         resource.postValue(Resource.loading())
         val call = ApiUtils.getInterface(Constant.baseUrl).getTopHeadlines(
             country = country,
@@ -39,7 +37,7 @@ class NewsViewModel : ViewModel(), LifecycleObserver {
             category = category
         )
 
-        call.enqueue(object : Callback<NewsResponse>{
+        call.enqueue(object : Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                 resource.postValue(Resource.error(t))
             }
