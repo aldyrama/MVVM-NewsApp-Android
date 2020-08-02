@@ -18,6 +18,7 @@ import com.example.mvvm_newsapp_android.base.BaseView
 import com.example.mvvm_newsapp_android.model.ArticlesModel
 import com.example.mvvm_newsapp_android.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.component_list_news_one.*
+import kotlinx.android.synthetic.main.component_progress_bar.*
 import kotlinx.android.synthetic.main.fragment_hot.*
 
 class HotFragment : Fragment(), BaseView {

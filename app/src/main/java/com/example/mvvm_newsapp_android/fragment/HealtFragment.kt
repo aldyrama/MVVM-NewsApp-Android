@@ -15,10 +15,8 @@ import com.example.mvvm_newsapp_android.model.ArticlesModel
 import com.example.mvvm_newsapp_android.viewmodel.NewsCategoryViewModel
 import kotlinx.android.synthetic.main.component_list_news.*
 import kotlinx.android.synthetic.main.component_progress_bar.*
-import kotlinx.android.synthetic.main.fragment_busines.*
-import kotlinx.android.synthetic.main.fragment_entertainment.*
 
-class BusinesFragment : Fragment(), BaseView {
+class HealtFragment : Fragment(), BaseView {
 
     var isRefresh = false
     private var list = ArrayList<ArticlesModel>()
@@ -26,7 +24,7 @@ class BusinesFragment : Fragment(), BaseView {
     private val viewModel by lazy { ViewModelProviders.of(this).get(NewsCategoryViewModel::class.java) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_busines, container, false)
+        return inflater.inflate(R.layout.fragment_healt, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,13 +67,13 @@ class BusinesFragment : Fragment(), BaseView {
 
     fun fetchData(){
         list.clear();
-        viewModel.getCategoryTopHeadlines("id", pageSize = 20, category = "business")
+        viewModel.getCategoryTopHeadlines("id", pageSize = 20, category = "health")
     }
 
     override fun refresh() {
         isRefresh = true
         list.clear();
-        viewModel.onRefreshCategoryTopHeadlines("id", category = "business")
+        viewModel.onRefreshCategoryTopHeadlines("id", category = "health")
     }
 
     override fun reload() {

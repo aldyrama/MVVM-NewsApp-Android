@@ -3,10 +3,7 @@ package com.example.mvvm_newsapp_android.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.mvvm_newsapp_android.fragment.BusinesFragment
-import com.example.mvvm_newsapp_android.fragment.EntertainmentFragment
-import com.example.mvvm_newsapp_android.fragment.HotFragment
-import com.example.mvvm_newsapp_android.fragment.TechnologyFragment
+import com.example.mvvm_newsapp_android.fragment.*
 
 class PagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
@@ -16,6 +13,10 @@ class PagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
             }
             1 -> EntertainmentFragment()
             2 -> BusinesFragment()
+            3 -> GeneralFragment()
+            4 -> HealtFragment()
+            5 -> ScienceFragment()
+            6 -> SportFragment()
             else -> {
                 return TechnologyFragment()
             }

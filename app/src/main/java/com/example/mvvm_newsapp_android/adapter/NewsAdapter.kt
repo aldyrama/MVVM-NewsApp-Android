@@ -32,6 +32,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
                 tv_title_category_news.text = data.title
                 tv_sort_description.text = data.description
                 tv_date_category.text = data.publishedAt
+                tv_category_news.text = data.source!!.name
                 if (!data.urlToImage.isNullOrBlank()) {
                     Picasso.get().load(data.urlToImage).into(img_category_news)
                 }

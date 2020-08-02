@@ -14,6 +14,7 @@ import com.example.mvvm_newsapp_android.base.BaseView
 import com.example.mvvm_newsapp_android.model.ArticlesModel
 import com.example.mvvm_newsapp_android.viewmodel.NewsCategoryViewModel
 import kotlinx.android.synthetic.main.component_list_news.*
+import kotlinx.android.synthetic.main.component_progress_bar.*
 import kotlinx.android.synthetic.main.fragment_entertainment.*
 
 class EntertainmentFragment : Fragment(), BaseView {
@@ -80,17 +81,17 @@ class EntertainmentFragment : Fragment(), BaseView {
     }
 
     override fun onFailure(t: Throwable) {
-        news_entertainment_progress_load.visibility = View.GONE
+        news_progress_load.visibility = View.GONE
 //        swipe_refresh_entertainment.isRefreshing = false
         Toast.makeText(activity, "Failure $t", Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoading() {
-        if (!isRefresh) news_entertainment_progress_load.visibility = View.VISIBLE
+        if (!isRefresh) news_progress_load.visibility = View.VISIBLE
     }
 
     override fun onSuccess() {
-        news_entertainment_progress_load.visibility = View.GONE
+        news_progress_load.visibility = View.GONE
 //        swipe_refresh_entertainment.isRefreshing = false
     }
 }
